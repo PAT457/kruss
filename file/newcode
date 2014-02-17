@@ -1,1 +1,62 @@
-X2MLezHr
+-- BASIC INSTALLER
+ 
+if not (term.isColor and term.isColor()) then
+        error("This OS and Installer Requiers a Advanced Computer, Please use one.")
+elseif not http then
+        error("This needs the HTTP Api Enabled to install Files.")
+end
+ 
+local function pastebinGet(sURL, sPath)
+        if not (type(sURL) == "string") then
+                error("Check the pastebinID!", 2)
+        end
+ 
+        local urlHandler = http.get("http://www.pastebin.com/raw.php?i=" .. sURL)
+        local sContent = urlHandler.readAll()
+        urlHandler.close()
+ 
+                local fileHandler = fs.open(sPath, "w")
+                fileHandler.write(sContent)
+                fileHandler.close()
+ 
+        return
+end
+ 
+ 
+local files = {
+ [".kruss_files/apps/hotpotato"] = "FJiAzyj3",
+ [".kruss_files/apps/luaide"] = "vyAZc6tJ",
+ [".kruss_files/apps/firewolf"] = "A7wGH3ty",
+ ["startup"] = "j2wtpFmc"
+}
+ 
+fs.makeDir(".kruss_files")
+fs.makeDir(".kruss_files/apps")
+ 
+local size = {term.getSize()}
+local cfilen = 0
+ 
+-- Maybe implement some loading bar using this loop?
+for path, id in pairs(files) do
+        term.setBackgroundColor(colors.gray)
+        term.clear()
+        paintutils.drawLine(1,size[2]/2,size[1],size[2]/2,colors.white)
+        term.setBackgroundColor(colors.lightGray)
+        term.setCursorPos(1,size[2]/2)
+        print("Kruss ")
+        term.setBackgroundColor(colors.white)
+        term.setCursorPos(7,size[2]/2)
+        term.setTextColor(colors.lightGray)
+        write("Installing ")
+        term.setTextColor(colors.gray)
+        write(path)
+        term.setTextColor(colors.lightGray)
+        write("...")
+        term.setTextColor(colors.white)
+       
+        pastebinGet(id, path)
+        cfilen = cfilen + 1
+ end  
+ 
+ 
+ os.reboot()
