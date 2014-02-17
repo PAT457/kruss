@@ -27,11 +27,18 @@ local files = {
  [".kruss_files/apps/hotpotato"] = "FJiAzyj3",
  [".kruss_files/apps/luaide"] = "vyAZc6tJ",
  [".kruss_files/apps/firewolf"] = "A7wGH3ty",
- ["startup"] = "j2wtpFmc"
+ [".kruss_files/apps/icebrowser"] = "hUN4PGkv",
+ [".kruss_files/configs/background"] = "1bLP8cHc",
+ [".kruss_files/graphic/mainbkg"] = "gqrFv5VU",
+ [".kruss_files/api/kruss"] = "tiaVpbzn",
+ ["startup"] = "F53xF1Wj"
 }
  
 fs.makeDir(".kruss_files")
 fs.makeDir(".kruss_files/apps")
+fs.makeDir(".kruss_files/configs")
+fs.makeDir(".kruss_files/graphic")
+fs.makeDir(".kruss_files/api")
  
 local size = {term.getSize()}
 local cfilen = 0
